@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">AACKotlin</string>
     <string name="about">about</string>
+    <string name="network_error">当前网络环境不好，请稍后再试哦~</string>
 </resources>
