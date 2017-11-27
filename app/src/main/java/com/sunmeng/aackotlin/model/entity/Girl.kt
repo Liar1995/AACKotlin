@@ -33,6 +33,7 @@ class Girl {
     var mAge: Int = 0
 
 
+
     constructor(_id: String?, createdAt: String?, desc: String?, publishedAt: String?, source: String?, type: String?, url: String?, used: Boolean, who: String?, mAge: Int) {
         this._id = _id
         this.createdAt = createdAt
