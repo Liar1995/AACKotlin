@@ -70,10 +70,10 @@ class GirlListFragment : Fragment() {
         val modelFactory = GirlListViewModel.Factory(App.instance!!, Injection.getDataRepository(App.instance!!)!!)
         mGirlListViewModel = ViewModelProviders.of(this, modelFactory).get(GirlListViewModel::class.java)
         mGirlListViewModel?.mGirls?.observe(this, Observer<GirlData<List<Girl>>> { t ->
-            if (t == null || t.results.isEmpty()) {
+            if (t == null || t.results!!.isEmpty()) {
                 return@Observer
             }
-            adapter?.setGirlList(t.results)
+            adapter?.setGirlList(t.results!!)
         })
 
         mGirlListViewModel?.getLoadMoreState()?.observe(this, Observer<Boolean> { t ->
@@ -111,10 +111,7 @@ class GirlListFragment : Fragment() {
             mRefreshLayout?.isRefreshing = true
             mGirlListViewModel?.refreshGrilsData()
         })
-        mRefreshLayout?.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light)
+
         mLoadMore = view.findViewById(R.id.load_more_bar)
         mRootView = view.findViewById(R.id.rl_girl_root)
     }

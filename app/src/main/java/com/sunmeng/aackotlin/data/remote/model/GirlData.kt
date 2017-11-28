@@ -7,11 +7,17 @@ import com.sunmeng.aackotlin.model.entity.Girl
  * Email:sunmeng995@gmail.com
  * Description:
  */
-class GirlData<T>(var error: Boolean, var results: T) {
+class GirlData<T> {
 
-    companion object {
-        fun <T> content(data :T) : GirlData<T>{
-            return GirlData(false,data)
-        }
+    var error: Boolean? = false
+    var results: T? = null
+
+    constructor(error: Boolean, results: T) {
+        this.error = error
+        this.results = results
     }
+
+    constructor()
+
+
 }

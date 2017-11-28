@@ -1,6 +1,7 @@
 package com.sunmeng.aackotlin.common.convert
 
 import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import com.sunmeng.aackotlin.data.remote.model.GirlData
 import com.sunmeng.aackotlin.model.entity.Girl
 import io.reactivex.Observable
@@ -12,8 +13,9 @@ import io.reactivex.Observable
  */
 class LiveDataObservableAdapter {
     companion object {
-        fun <T> fromObservable(observable: Observable<T>): LiveData<GirlData<T>> {
-            return ObservableToLiveData(observable)
+        fun fromObservable(observable: Observable<GirlData<List<Girl>>>, mIsLoadingGirlList: MutableLiveData<Boolean>?)
+                : MutableLiveData<GirlData<List<Girl>>> {
+            return ObservableToLiveData(observable,mIsLoadingGirlList)
         }
     }
 }

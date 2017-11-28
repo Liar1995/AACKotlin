@@ -4,6 +4,7 @@ import com.sunmeng.aackotlin.data.remote.RemoteDataSource
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.fastjson.FastJsonConverterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
@@ -40,7 +41,7 @@ class ApiManager {
                     sApiGirl = Retrofit.Builder()
                             .baseUrl(GIRL_URL)
                             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                            .addConverterFactory(GsonConverterFactory.create())
+                            .addConverterFactory(FastJsonConverterFactory.create())
                             .build()
                             .create(ApiGirl::class.java)
                 }

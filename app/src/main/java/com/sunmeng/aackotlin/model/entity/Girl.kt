@@ -1,5 +1,6 @@
 package com.sunmeng.aackotlin.model.entity
 
+import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import android.support.annotation.NonNull
 
@@ -8,11 +9,12 @@ import android.support.annotation.NonNull
  * Email:sunmeng995@gmail.com
  * Description:
  */
+@Entity(tableName = "girls")
 class Girl {
 
     @NonNull
     @PrimaryKey
-    var _id: String? = null
+    var id: String? = null
 
     var createdAt: String? = null
 
@@ -35,7 +37,7 @@ class Girl {
 
 
     constructor(_id: String?, createdAt: String?, desc: String?, publishedAt: String?, source: String?, type: String?, url: String?, used: Boolean, who: String?, mAge: Int) {
-        this._id = _id
+        this.id = _id
         this.createdAt = createdAt
         this.desc = desc
         this.publishedAt = publishedAt

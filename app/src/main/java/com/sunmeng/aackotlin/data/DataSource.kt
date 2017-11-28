@@ -11,6 +11,6 @@ import com.sunmeng.aackotlin.model.entity.Girl
  * Description:
  */
 interface DataSource {
-    fun getGirlList(index: Int): LiveData<GirlData<List<Girl>>>
+    fun getGirlList(index: Int): MutableLiveData<GirlData<List<Girl>>>?
     fun isLoadingGirlList(): MutableLiveData<Boolean>?
 }

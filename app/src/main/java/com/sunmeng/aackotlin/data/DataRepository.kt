@@ -35,7 +35,7 @@ class DataRepository(private var mRemoteDataSource: RemoteDataSource?, private v
         }
     }
 
-    fun getGirlList(index: Int): LiveData<GirlData<List<Girl>>> {
+    fun getGirlList(index: Int): MutableLiveData<GirlData<List<Girl>>>? {
         return if (Util.isNetworkConnected(sApplication))
             mRemoteDataSource!!.getGirlList(index)
         else

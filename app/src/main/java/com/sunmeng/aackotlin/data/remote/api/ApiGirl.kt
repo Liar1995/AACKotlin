@@ -15,6 +15,8 @@ import retrofit2.http.Path
 interface ApiGirl {
 
     @GET("api/data/福利/10/{index}")
-    fun getGirlsData(@Path("index") index: Int): Observable<List<Girl>>
+    fun getGirlsData(@Path("index") index: Int): Observable<GirlData<List<Girl>>>
 
+    @GET("api/data/福利/10/{index}")
+    fun getGirlsDataCall(@Path("index") index: Int): Call<GirlData<List<Girl>>>
 }

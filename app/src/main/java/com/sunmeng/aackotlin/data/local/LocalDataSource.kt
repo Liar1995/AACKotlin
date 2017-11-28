@@ -3,6 +3,7 @@ package com.sunmeng.aackotlin.data.local
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.sunmeng.aackotlin.data.DataSource
+import com.sunmeng.aackotlin.data.local.db.AppDatabaseManager
 import com.sunmeng.aackotlin.data.remote.RemoteDataSource
 import com.sunmeng.aackotlin.data.remote.model.GirlData
 import com.sunmeng.aackotlin.model.entity.Girl
@@ -28,11 +29,11 @@ class LocalDataSource : DataSource {
         }
     }
 
-    override fun getGirlList(index: Int): LiveData<GirlData<List<Girl>>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getGirlList(index: Int): MutableLiveData<GirlData<List<Girl>>>? {
+        return AppDatabaseManager.getInstance()?.loadGirlList()
     }
 
     override fun isLoadingGirlList(): MutableLiveData<Boolean>? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return AppDatabaseManager.getInstance()?.isLoadingGirlList()
     }
 }
