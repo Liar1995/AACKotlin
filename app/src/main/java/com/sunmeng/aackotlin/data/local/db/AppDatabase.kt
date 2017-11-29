@@ -10,9 +10,6 @@ import com.sunmeng.aackotlin.model.entity.Girl
  * Description:
  */
 @Database(entities = arrayOf(Girl::class), version = 1, exportSchema = false)
-@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
-
     abstract fun girlDao(): GirlDao
-
 }

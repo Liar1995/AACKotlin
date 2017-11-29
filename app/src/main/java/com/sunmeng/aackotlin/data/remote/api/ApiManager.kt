@@ -41,7 +41,7 @@ class ApiManager {
                     sApiGirl = Retrofit.Builder()
                             .baseUrl(GIRL_URL)
                             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                            .addConverterFactory(FastJsonConverterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create())
                             .build()
                             .create(ApiGirl::class.java)
                 }

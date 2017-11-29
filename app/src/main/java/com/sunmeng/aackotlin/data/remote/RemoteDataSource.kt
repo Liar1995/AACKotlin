@@ -71,7 +71,6 @@ class RemoteDataSource : DataSource {
 
     private fun refreshLocalGirlList(results: List<Girl>?) {
         if (results != null) AppDatabaseManager.getInstance()?.insertGirlList(results)
-
     }
 
     override fun isLoadingGirlList(): MutableLiveData<Boolean>? {

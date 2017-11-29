@@ -19,8 +19,8 @@ class Util {
 
         fun isNetworkConnected(mContext: Context): Boolean {
             val mConnectivityManager: ConnectivityManager = mContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val mNetworkInfo: NetworkInfo = mConnectivityManager.activeNetworkInfo
-            return mNetworkInfo.isAvailable
+            val mNetworkInfo = mConnectivityManager.activeNetworkInfo
+            return mNetworkInfo?.isAvailable ?: return false
         }
 
         fun showSnackbar(parentView: View, msg: String) {
