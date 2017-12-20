@@ -32,7 +32,7 @@ class GirlListAdapter(private var mItemClick: OnItemClickListener<Girl>?) : Recy
         val girl: Girl = mList?.get(position) ?: return
             holder?.mRoot?.setOnClickListener({ mItemClick?.onClick(girl) })
             holder?.mTVGirlName?.text=girl.who
-            holder?.mTVGirlAge?.text= girl.publishedAt.toString()
+            holder?.mTVGirlAge?.text= girl.publishedAt
             Glide.with(holder?.mIVGirlAvatar?.context).load(girl.url).into(holder?.mIVGirlAvatar)
     }
 

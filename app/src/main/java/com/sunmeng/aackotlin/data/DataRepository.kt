@@ -22,7 +22,6 @@ class DataRepository(private var mRemoteDataSource: RemoteDataSource?, private v
     companion object {
         @SuppressLint("StaticFieldLeak")
         private var INSTANCE: DataRepository? = null
-
         fun getInstance(mRemoteDataSource: RemoteDataSource, mLocalDataSource: LocalDataSource, sApplication: Application): DataRepository? {
             if (INSTANCE == null) {
                 synchronized(DataRepository::class.java) {

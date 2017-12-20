@@ -1,16 +1,12 @@
 package com.sunmeng.aackotlin.data.remote
 
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import com.sunmeng.aackotlin.common.convert.LiveDataObservableAdapter
 import com.sunmeng.aackotlin.data.DataSource
 import com.sunmeng.aackotlin.data.local.db.AppDatabaseManager
 import com.sunmeng.aackotlin.data.remote.api.ApiGirl
 import com.sunmeng.aackotlin.data.remote.api.ApiManager
 import com.sunmeng.aackotlin.data.remote.model.GirlData
 import com.sunmeng.aackotlin.model.entity.Girl
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

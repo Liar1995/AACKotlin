@@ -9,6 +9,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.StaggeredGridLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -77,7 +79,7 @@ class GirlListFragment : Fragment() {
         })
 
         mGirlListViewModel?.getLoadMoreState()?.observe(this, Observer<Boolean> { t ->
-            if (t==null) return@Observer
+            if (t == null) return@Observer
             if (mRefreshLayout?.isRefreshing!!) {
                 mRefreshLayout?.isRefreshing = false
             } else {
@@ -86,7 +88,7 @@ class GirlListFragment : Fragment() {
         })
 
         mGirlListViewModel?.refreshGrilsData()
-        mRefreshLayout?.isRefreshing=true
+        mRefreshLayout?.isRefreshing = true
     }
 
     private fun initView(view: View) {
@@ -99,7 +101,7 @@ class GirlListFragment : Fragment() {
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 val layoutManager: LinearLayoutManager = recyclerView!!.layoutManager as LinearLayoutManager
-                val lastPosition: Int = layoutManager.findLastVisibleItemPosition()
+                val lastPosition = layoutManager.findLastVisibleItemPosition()
                 if (lastPosition == adapter!!.itemCount - 1) {
                     mGirlListViewModel?.loadNextPageGirls()
                 }

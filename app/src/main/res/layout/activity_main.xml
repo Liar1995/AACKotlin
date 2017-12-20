@@ -14,17 +14,6 @@
         android:layout_height="0dp"
         android:background="@color/colorPrimary"/>
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/tool_bar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_below="@+id/fake_status_bar"
-        android:background="@color/colorPrimary"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:title="@string/app_name"
-        app:titleTextColor="@android:color/white"/>
-
     <FrameLayout
         android:id="@+id/fram_context"
         android:layout_width="match_parent"
