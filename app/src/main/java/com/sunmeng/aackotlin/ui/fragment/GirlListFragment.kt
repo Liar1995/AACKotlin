@@ -2,7 +2,6 @@ package com.sunmeng.aackotlin.ui.fragment
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -16,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
+import android.widget.TextView
 import com.sunmeng.aackotlin.R
 import com.sunmeng.aackotlin.app.App
 import com.sunmeng.aackotlin.data.Injection
@@ -24,8 +24,10 @@ import com.sunmeng.aackotlin.model.entity.Girl
 import com.sunmeng.aackotlin.ui.activity.GirlActivity
 import com.sunmeng.aackotlin.ui.adapter.GirlListAdapter
 import com.sunmeng.aackotlin.ui.listener.OnItemClickListener
+import com.sunmeng.aackotlin.utils.SpaceDecoration
 import com.sunmeng.aackotlin.utils.Util
 import com.sunmeng.aackotlin.viewmodel.GirlListViewModel
+import com.sunmeng.aackotlin.widget.SecretTextView
 
 /**
  * Created by sunmeng on 2017/11/24.
@@ -92,19 +94,27 @@ class GirlListFragment : Fragment() {
     }
 
     private fun initView(view: View) {
-        val mContext = view.context
         val mRecView: RecyclerView = view.findViewById(R.id.rv_girl_list)
-        mRecView.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
-        adapter = GirlListAdapter(mGirlClickListener)
+        val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
+        mRecView.layoutManager = staggeredGridLayoutManager
+
+        val itemDecoration = SpaceDecoration(15)
+        itemDecoration.setPaddingEdgeSide(true)
+        mRecView.addItemDecoration(itemDecoration)
+
+        val mHeights: ArrayList<Int> = ArrayList()
+        adapter = GirlListAdapter(mGirlClickListener, mHeights)
         mRecView.adapter = adapter
         mRecView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                val layoutManager: LinearLayoutManager = recyclerView!!.layoutManager as LinearLayoutManager
-                val lastPosition = layoutManager.findLastVisibleItemPosition()
-                if (lastPosition == adapter!!.itemCount - 1) {
+                val layoutManager: StaggeredGridLayoutManager = recyclerView!!.layoutManager as StaggeredGridLayoutManager
+                val lastPosition = layoutManager.findLastVisibleItemPositions(null)
+                if (lastPosition[0] == adapter!!.itemCount - 1 || lastPosition[1] == adapter!!.itemCount - 1) {
                     mGirlListViewModel?.loadNextPageGirls()
                 }
+
             }
         })
         mRefreshLayout = view.findViewById(R.id.srl)
@@ -116,6 +126,8 @@ class GirlListFragment : Fragment() {
 
         mLoadMore = view.findViewById(R.id.load_more_bar)
         mRootView = view.findViewById(R.id.rl_girl_root)
+
+
     }
 
 }

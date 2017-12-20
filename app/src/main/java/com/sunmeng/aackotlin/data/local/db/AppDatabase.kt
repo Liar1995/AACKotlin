@@ -9,7 +9,7 @@ import com.sunmeng.aackotlin.model.entity.Girl
  * Email:sunmeng995@gmail.com
  * Description:
  */
-@Database(entities = arrayOf(Girl::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(Girl::class), version = 1, exportSchema = true)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun girlDao(): GirlDao
 }

@@ -12,7 +12,6 @@ import com.sunmeng.aackotlin.ui.fragment.GirlListFragment
 class MainActivity : AppCompatActivity() {
 
     private var pinal: FrameLayout? = null
-    private var toolbar: Toolbar? = null
     private var mFragmentManager: FragmentManager? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +22,6 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("CommitTransaction")
     private fun initView() {
         pinal = findViewById(R.id.fram_context)
-        toolbar = findViewById(R.id.tool_bar)
         mFragmentManager=supportFragmentManager
         val mGirlListFragment=GirlListFragment()
         mFragmentManager?.beginTransaction()?.add(R.id.fram_context,mGirlListFragment)?.commit()
