@@ -1,6 +1,7 @@
 package com.sunmeng.aackotlin.ui.activity
 
 import android.app.Activity
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 
 /**
@@ -10,7 +11,7 @@ import android.support.v7.app.AppCompatActivity
  */
 class GirlActivity:AppCompatActivity() {
     companion object {
-        fun startGirlActivity(activity : Activity,url:String){
+        fun startGirlActivity(activity : Context,url:String){
 
         }
     }

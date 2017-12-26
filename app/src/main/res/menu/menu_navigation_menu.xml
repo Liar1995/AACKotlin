@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/g1"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/home"
+            android:title="@string/menu_home" />
+
+        <item
+            android:id="@+id/leisure_reading"
+            android:title="@string/menu_leisure_reading" />
+
+        <item
+            android:id="@+id/douban"
+            android:title="@string/menu_douban" />
+
+        <item
+            android:id="@+id/youku"
+            android:title="@string/menu_youku" />
+
+        <item
+            android:id="@+id/dribbble"
+            android:title="@string/menu_dribbble" />
+    </group>
+
+    <group
+        android:id="@+id/g2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_about"
+            android:title="@string/menu_about_summer" />
+    </group>
+</menu>

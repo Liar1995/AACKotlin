@@ -1,5 +1,13 @@
 <resources>
-    <string name="app_name">AACKotlin</string>
+    <string name="app_name">S U M M E R</string>
     <string name="about">about</string>
     <string name="network_error">当前网络环境不好，请稍后再试哦~</string>
+    <string name="menu_home">HOME</string>
+    <string name="menu_leisure_reading">LEISURE READING</string>
+    <string name="menu_douban">DOUBAN VIDEO</string>
+    <string name="menu_youku">YOUKU VIDEO</string>
+    <string name="menu_dribbble">DRIBBBLE</string>
+    <string name="menu_about_summer">ABOUT SUMMER</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

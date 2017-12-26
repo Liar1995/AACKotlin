@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#009688</color>
-    <color name="colorPrimaryDark">#00796B</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="lightGrey">#ffaabb</color>
-
+    <color name="colorPrimary">#282a2f</color>
+    <color name="colorPrimaryDark">#282a2f</color>
+    <color name="colorAccent">#D5C38A</color>
+    <color name="color_white">#ffffff</color>
+    <color name="color_navigationView_bg">#2e3036</color>
 </resources>

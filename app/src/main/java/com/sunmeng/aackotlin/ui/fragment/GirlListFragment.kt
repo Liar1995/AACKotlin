@@ -6,7 +6,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.util.Log
@@ -15,51 +14,51 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
-import android.widget.TextView
 import com.sunmeng.aackotlin.R
 import com.sunmeng.aackotlin.app.App
 import com.sunmeng.aackotlin.data.Injection
 import com.sunmeng.aackotlin.data.remote.model.GirlData
 import com.sunmeng.aackotlin.model.entity.Girl
-import com.sunmeng.aackotlin.ui.activity.GirlActivity
 import com.sunmeng.aackotlin.ui.adapter.GirlListAdapter
-import com.sunmeng.aackotlin.ui.listener.OnItemClickListener
+import com.sunmeng.aackotlin.ui.listener.ItemClickPresenter
 import com.sunmeng.aackotlin.utils.SpaceDecoration
 import com.sunmeng.aackotlin.utils.Util
 import com.sunmeng.aackotlin.viewmodel.GirlListViewModel
-import com.sunmeng.aackotlin.widget.SecretTextView
 
 /**
  * Created by sunmeng on 2017/11/24.
  * Email:sunmeng995@gmail.com
  * Description:
  */
-class GirlListFragment : Fragment() {
+class GirlListFragment : Fragment(), ItemClickPresenter<Girl> {
 
-    private var mRootView: RelativeLayout? = null
-    private var mRefreshLayout: SwipeRefreshLayout? = null
-    private var mLoadMore: ProgressBar? = null
-    private var adapter: GirlListAdapter? = null
-    private var mGirlListViewModel: GirlListViewModel? = null
-
-    //使用对象表达式创建匿名内部类实例
-    private val mGirlClickListener = object : OnItemClickListener<Girl> {
-        override fun onClick(t: Girl) {
-            if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {//主动查询生命周期
-                if (Util.isNetworkConnected(App.instance!!.applicationContext)) {
-                    GirlActivity.startGirlActivity(activity, t.url!!)
-                } else {
-                    if (mRootView != null) {
-                        Util.showSnackbar(mRootView!!, getString(R.string.network_error))
-                    }
+    override fun onItemClick(v: View?, item: Girl) {
+        if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {//主动查询生命周期
+            if (Util.isNetworkConnected(App.instance!!.applicationContext)) {
+//                GirlActivity.startGirlActivity(context!!, item.url!!)
+                Log.i("Summer", item.url)
+            } else {
+                if (mRootView != null) {
+                    Util.showSnackbar(mRootView!!, getString(R.string.network_error))
                 }
             }
         }
     }
 
+    private val adapter: GirlListAdapter by lazy {
+        GirlListAdapter(ArrayList(), context!!).apply {
+            itemPresenter = this@GirlListFragment
+        }
+    }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view: View = inflater!!.inflate(R.layout.fragment_girl_list, container, false)
+    private var mRootView: RelativeLayout? = null
+    private var mRefreshLayout: SwipeRefreshLayout? = null
+    private var mLoadMore: ProgressBar? = null
+    private var mGirlListViewModel: GirlListViewModel? = null
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view: View = inflater.inflate(R.layout.fragment_girl_list, container, false)
         initView(view)
         return view
     }
@@ -77,7 +76,7 @@ class GirlListFragment : Fragment() {
             if (t == null || t.results!!.isEmpty()) {
                 return@Observer
             }
-            adapter?.setGirlList(t.results!!)
+            adapter.items.addAll(t.results!!)
         })
 
         mGirlListViewModel?.getLoadMoreState()?.observe(this, Observer<Boolean> { t ->
@@ -102,16 +101,13 @@ class GirlListFragment : Fragment() {
         val itemDecoration = SpaceDecoration(15)
         itemDecoration.setPaddingEdgeSide(true)
         mRecView.addItemDecoration(itemDecoration)
-
-        val mHeights: ArrayList<Int> = ArrayList()
-        adapter = GirlListAdapter(mGirlClickListener, mHeights)
         mRecView.adapter = adapter
         mRecView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 val layoutManager: StaggeredGridLayoutManager = recyclerView!!.layoutManager as StaggeredGridLayoutManager
                 val lastPosition = layoutManager.findLastVisibleItemPositions(null)
-                if (lastPosition[0] == adapter!!.itemCount - 1 || lastPosition[1] == adapter!!.itemCount - 1) {
+                if (lastPosition[0] == adapter.itemCount - 1 || lastPosition[1] == adapter.itemCount - 1) {
                     mGirlListViewModel?.loadNextPageGirls()
                 }
 
@@ -119,15 +115,12 @@ class GirlListFragment : Fragment() {
         })
         mRefreshLayout = view.findViewById(R.id.srl)
         mRefreshLayout?.setOnRefreshListener({
-            adapter?.clearGirlList()
+            adapter.items.clear()
             mRefreshLayout?.isRefreshing = true
             mGirlListViewModel?.refreshGrilsData()
         })
-
         mLoadMore = view.findViewById(R.id.load_more_bar)
         mRootView = view.findViewById(R.id.rl_girl_root)
-
-
     }
 
 }
