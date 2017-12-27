@@ -13,19 +13,16 @@ import android.view.View
  * Email:sunmeng995@gmail.com
  * Description:
  */
-class Util {
+object Util {
 
-    companion object {
+    fun isNetworkConnected(mContext: Context): Boolean {
+        val mConnectivityManager: ConnectivityManager = mContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val mNetworkInfo = mConnectivityManager.activeNetworkInfo
+        return mNetworkInfo?.isAvailable ?: return false
+    }
 
-        fun isNetworkConnected(mContext: Context): Boolean {
-            val mConnectivityManager: ConnectivityManager = mContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val mNetworkInfo = mConnectivityManager.activeNetworkInfo
-            return mNetworkInfo?.isAvailable ?: return false
-        }
-
-        fun showSnackbar(parentView: View, msg: String) {
-            if (TextUtils.isEmpty(msg)) return else Snackbar.make(parentView, msg, Snackbar.LENGTH_LONG)
-        }
+    fun showSnackbar(parentView: View, msg: String) {
+        if (TextUtils.isEmpty(msg)) return else Snackbar.make(parentView, msg, Snackbar.LENGTH_LONG).show()
     }
 
 }

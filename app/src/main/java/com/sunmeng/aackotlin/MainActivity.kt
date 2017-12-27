@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.custom_toolbar.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-
     private var mFragmentManager: FragmentManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +30,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         mFragmentManager = supportFragmentManager
         val mGirlListFragment = GirlListFragment()
         mFragmentManager?.beginTransaction()?.add(R.id.fram_context, mGirlListFragment)?.commit()
-        txt_home_title.setDuration(3*1000)
+        txt_home_title.setDuration(3 * 1000)
         txt_home_title.show()
         navigation_view.setNavigationItemSelectedListener(this)
 
@@ -39,7 +38,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         item.isChecked = true
-        Log.i("Summer","xxxx")
+        Log.i("Summer", "xxxx")
         return true
     }
 }

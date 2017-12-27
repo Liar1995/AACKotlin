@@ -10,3 +10,7 @@ import android.view.View
 interface ItemClickPresenter<in Any> {
     fun onItemClick(v: View? = null, item: Any)
 }
+
+interface ItemLongClickPresenter<in Any> {
+    fun onItemLongClick(v: View? = null, item: Any): Boolean
+}
