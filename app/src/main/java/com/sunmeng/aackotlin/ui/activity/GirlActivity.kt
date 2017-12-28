@@ -11,6 +11,7 @@ import android.view.View
 import android.view.WindowManager
 import com.sunmeng.aackotlin.R
 import com.sunmeng.aackotlin.databinding.ActivityGirlDetailsBinding
+import com.sunmeng.aackotlin.ui.base.BaseActivity
 import com.sunmeng.aackotlin.ui.listener.ItemLongClickPresenter
 
 /**
@@ -18,7 +19,21 @@ import com.sunmeng.aackotlin.ui.listener.ItemLongClickPresenter
  * Email:sunmeng995@gmail.com
  * Description:
  */
-class GirlActivity : AppCompatActivity(), ItemLongClickPresenter<String> {
+class GirlActivity : BaseActivity<ActivityGirlDetailsBinding>(), ItemLongClickPresenter<String> {
+
+    @SuppressLint("InflateParams")
+    override fun loadData() {
+        ViewCompat.setTransitionName(mBinding.ivGirlDetails, imageId)
+        dialog = BottomSheetDialog(this)
+        dialog.setContentView(layoutInflater.inflate(R.layout.custom_girl_details_content, null))
+    }
+
+    override fun initView() {
+        mBinding.presenter = this@GirlActivity
+        mBinding.item = imageUrl
+    }
+
+    override fun getLayoutId(): Int = R.layout.activity_girl_details
 
     private lateinit var dialog: BottomSheetDialog
 
@@ -33,18 +48,6 @@ class GirlActivity : AppCompatActivity(), ItemLongClickPresenter<String> {
 
     private val imageId: String by lazy {
         intent.getStringExtra("imageId")
-    }
-
-    @SuppressLint("InflateParams")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val activityGirlBinding = DataBindingUtil.setContentView<ActivityGirlDetailsBinding>(this, R.layout.activity_girl_details)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        activityGirlBinding.presenter = this@GirlActivity
-        activityGirlBinding.item = imageUrl
-        ViewCompat.setTransitionName(activityGirlBinding.ivGirlDetails, imageId)
-        dialog= BottomSheetDialog(this)
-        dialog.setContentView(layoutInflater.inflate(R.layout.custom_girl_details_content, null))
     }
 
 }

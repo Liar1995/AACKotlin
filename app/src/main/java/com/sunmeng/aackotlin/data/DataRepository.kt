@@ -18,7 +18,6 @@ import com.sunmeng.aackotlin.utils.Util
  */
 class DataRepository(private var mRemoteDataSource: RemoteDataSource?, private var mLocalDataSource: LocalDataSource?, private var sApplication: Application) {
 
-
     companion object {
         @SuppressLint("StaticFieldLeak")
         private var INSTANCE: DataRepository? = null

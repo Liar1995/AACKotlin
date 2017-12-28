@@ -1,4 +1,4 @@
-package com.sunmeng.aackotlin.ui.binding
+package com.sunmeng.aackotlin.utils
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide

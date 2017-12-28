@@ -21,8 +21,4 @@ object Util {
         return mNetworkInfo?.isAvailable ?: return false
     }
 
-    fun showSnackbar(parentView: View, msg: String) {
-        if (TextUtils.isEmpty(msg)) return else Snackbar.make(parentView, msg, Snackbar.LENGTH_LONG).show()
-    }
-
 }

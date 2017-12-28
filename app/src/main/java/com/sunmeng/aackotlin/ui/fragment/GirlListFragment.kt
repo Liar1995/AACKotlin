@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,11 +18,11 @@ import com.sunmeng.aackotlin.app.App
 import com.sunmeng.aackotlin.data.Injection
 import com.sunmeng.aackotlin.data.remote.model.GirlData
 import com.sunmeng.aackotlin.model.entity.Girl
-import com.sunmeng.aackotlin.ui.activity.GirlActivity
 import com.sunmeng.aackotlin.ui.adapter.GirlListAdapter
 import com.sunmeng.aackotlin.ui.listener.ItemClickPresenter
+import com.sunmeng.aackotlin.ui.showSneaker
 import com.sunmeng.aackotlin.ui.startGirlActivity
-import com.sunmeng.aackotlin.utils.SpaceDecoration
+import com.sunmeng.aackotlin.widget.SpaceDecoration
 import com.sunmeng.aackotlin.utils.Util
 import com.sunmeng.aackotlin.viewmodel.GirlListViewModel
 
@@ -37,12 +36,10 @@ class GirlListFragment : Fragment(), ItemClickPresenter<Girl> {
     override fun onItemClick(v: View?, item: Girl) {
         if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {//主动查询生命周期
             if (Util.isNetworkConnected(App.instance!!.applicationContext)) {
-                startGirlActivity(activity!!, item.url!!,item._id!!,v!!)
+                startGirlActivity(activity!!, item.url!!, item._id!!, v!!)
             } else {
-                if (mRootView != null) {
-                    Util.showSnackbar(mRootView!!, getString(R.string.network_error))
-                }
-            }
+                showSneaker(activity!!, getString(R.string.network_error))
+        }
         }
     }
 

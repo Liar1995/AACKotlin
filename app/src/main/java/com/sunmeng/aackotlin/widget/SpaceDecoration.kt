@@ -1,4 +1,4 @@
-package com.sunmeng.aackotlin.utils
+package com.sunmeng.aackotlin.widget
 
 import android.graphics.Rect
 import android.support.v7.widget.*

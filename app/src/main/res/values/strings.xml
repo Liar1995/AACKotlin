@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">S U M M E R</string>
     <string name="about">about</string>
-    <string name="network_error">当前网络环境不好，请稍后再试~</string>
+    <string name="network_error">The current network environment is not good, please try again later～</string>
     <string name="menu_home">HOME</string>
     <string name="menu_leisure_reading">LEISURE READING</string>
     <string name="menu_douban">DOUBAN VIDEO</string>
@@ -10,4 +10,5 @@
     <string name="menu_about_summer">ABOUT SUMMER</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="menu_my_collection">MY COLLECTION</string>
 </resources>

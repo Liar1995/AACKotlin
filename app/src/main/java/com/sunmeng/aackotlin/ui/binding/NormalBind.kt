@@ -3,6 +3,7 @@ package com.sunmeng.aackotlin.ui.binding
 import android.databinding.BindingAdapter
 import android.widget.ImageView
 import com.github.chrisbanes.photoview.PhotoView
+import com.sunmeng.aackotlin.utils.GlideUtil
 
 /**
  * Created by sunmeng on 26/12/2017.

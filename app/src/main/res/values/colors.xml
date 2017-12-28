@@ -5,4 +5,10 @@
     <color name="colorAccent">#D5C38A</color>
     <color name="color_white">#ffffff</color>
     <color name="color_navigationView_bg">#2e3036</color>
+
+    <color name="alert_color_error">#f3373f</color>
+    <color name="alert_color_success">#c6fcb0</color>
+    <color name="alert_color_warning">#fbf3be</color>
+    <color name="alert_color_normal">#d1e9f5</color>
+
 </resources>

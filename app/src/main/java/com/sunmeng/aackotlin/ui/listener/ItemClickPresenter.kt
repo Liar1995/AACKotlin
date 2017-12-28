@@ -7,6 +7,11 @@ import android.view.View
  * Email:sunmeng995@gmail.com
  * Description:
  */
+
+interface ClickListener{
+    fun onClickListener(v: View? = null)
+}
+
 interface ItemClickPresenter<in Any> {
     fun onItemClick(v: View? = null, item: Any)
 }
