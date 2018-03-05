@@ -39,7 +39,7 @@ class GirlListFragment : Fragment(), ItemClickPresenter<Girl> {
                 startGirlActivity(activity!!, item.url!!, item._id!!, v!!)
             } else {
                 showSneaker(activity!!, getString(R.string.network_error))
-        }
+            }
         }
     }
 
@@ -108,7 +108,6 @@ class GirlListFragment : Fragment(), ItemClickPresenter<Girl> {
                 if (lastPosition[0] == adapter.itemCount - 1 || lastPosition[1] == adapter.itemCount - 1) {
                     mGirlListViewModel?.loadNextPageGirls()
                 }
-
             }
         })
         mRefreshLayout = view.findViewById(R.id.srl)

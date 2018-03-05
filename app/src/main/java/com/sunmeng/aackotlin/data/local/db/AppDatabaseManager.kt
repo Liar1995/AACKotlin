@@ -51,7 +51,7 @@ class AppDatabaseManager {
                 val context = p0[0]?.applicationContext
                 mDB = Room.databaseBuilder(context!!,
                         AppDatabase::class.java, DATABASE_NAME).build()
-                return Unit
+                return
             }
         }.execute(mContext.applicationContext)
     }
